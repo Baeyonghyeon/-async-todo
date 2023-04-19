@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public record MemberDetails(
         String username,
         String password,
         Collection<? extends GrantedAuthority> authorities
-) implements UserDetails{
+) implements UserDetails {
 
     public static MemberDetails of(Long userId, String username, String password, List<MemberRole> userRoles) {
         return new MemberDetails(
@@ -38,6 +39,18 @@ public record MemberDetails(
                 member.getPassword(),
                 member.getMemberRoles()
         );
+    }
+
+    public static MemberDetails from(SignUpDto signUpDto) {
+        return new MemberDetails(
+                signUpDto.id(),
+                signUpDto.username(),
+                signUpDto.password()
+        );
+    }
+
+    public MemberDetails(Long memberId, String username, String password) {
+        this(memberId, username, password, null);
     }
 
     @Override

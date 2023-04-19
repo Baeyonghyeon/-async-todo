@@ -1,6 +1,6 @@
 package com.kurt.asynctodo.security.filter;
 
-import com.kurt.asynctodo.security.JwtUtils;
+import com.kurt.asynctodo.security.utils.JwtUtils;
 import com.kurt.asynctodo.security.dto.MemberInfo;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

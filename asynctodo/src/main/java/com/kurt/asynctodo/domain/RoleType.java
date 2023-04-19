@@ -3,7 +3,7 @@ package com.kurt.asynctodo.domain;
 import lombok.Getter;
 
 public enum RoleType {
-    USER("일반 유저"),
+    NORMAL("일반 유저"),
     ADMIN("관리자");
 
     @Getter

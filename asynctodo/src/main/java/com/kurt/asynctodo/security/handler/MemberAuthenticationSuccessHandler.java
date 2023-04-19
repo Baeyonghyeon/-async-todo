@@ -25,7 +25,6 @@ public class MemberAuthenticationSuccessHandler implements AuthenticationSuccess
         String memberInfoToJson = mapper.writeValueAsString(memberInfo);
         response.setContentType("application/json");
         response.getWriter().write(memberInfoToJson);
-
         log.info("login authentication success!!!");
     }
 }
