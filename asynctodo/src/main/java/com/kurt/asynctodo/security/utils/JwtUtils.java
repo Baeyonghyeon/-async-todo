@@ -18,10 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtils {
-    /**
-     * secretKey, accessTokenExpirationMinutes, refreshTokenExpirationMinutes
-     * JWT 생성 시 필요한 정보 - application.yml에서 로드
-     */
+
     @Getter
     @Value("${jwt.secret-key}")
     private String secretKey;
@@ -34,16 +31,10 @@ public class JwtUtils {
     @Value("${jwt.refresh-token-expiration-minutes}")
     private int refreshTokenExpirationMinutes;
 
-    /**
-     * Secret Key 문자열 인코딩
-     */
     public String encodeBase64SecretKey(String secretKey) {
         return Encoders.BASE64.encode(secretKey.getBytes(StandardCharsets.UTF_8));
     }
 
-    /**
-     * JWT 생성 메서드
-     */
     public String generateAccessToken(Map<String, Object> claims, String subject, Date expiration, String base64EncodedSecretKey) {
         Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey); // Secret Key 객체 얻기
 
@@ -85,7 +76,6 @@ public class JwtUtils {
                 .parseClaimsJws(jws);
     }
 
-
     public void verifySignature(String jws, String base64EncodedSecretKey) {
         Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
 
@@ -95,18 +85,13 @@ public class JwtUtils {
                 .parseClaimsJws(jws);
     }
 
-    /**
-     * JWT 만료 일시를 지정하기 위한 메서드, JWT 생성 시 사용
-     */
     public Date getTokenExpiration(int expirationMinutes) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, expirationMinutes);
         return calendar.getTime();
     }
 
-    /**
-     * JWT 서명을 위한 Secret Key 생성
-     */
+    // 이건 왜 인코딩 해서 사용하는가...
     private Key getKeyFromBase64EncodedKey(String base64EncodedSecretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(base64EncodedSecretKey);
         return Keys.hmacShaKeyFor(keyBytes);
