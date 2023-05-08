@@ -1,8 +1,11 @@
 package com.kurt.asynctodo.security.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public record SignUpDto(
-        Long id,
+        @NotNull
         String username,
+        @NotNull
         String password
 ) {
 }

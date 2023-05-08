@@ -6,10 +6,12 @@ import com.kurt.asynctodo.domain.RoleType;
 import com.kurt.asynctodo.exception.UserAlreadyExistAuthenticationException;
 import com.kurt.asynctodo.repository.MemberRepository;
 import com.kurt.asynctodo.security.dto.MemberDetails;
+import com.kurt.asynctodo.security.dto.response.MemberSignUpResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
@@ -19,21 +21,26 @@ import org.springframework.stereotype.Service;
 public class MemberDetailsService implements UserDetailsManager {
 
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void createUser(UserDetails user) {
         log.info("MemberDetailsService try createUser {}", user);
+        log.info("MemberDetailsService try createUser for memberDetails {}", (MemberDetails) user);
 
         if(userExists(user.getUsername())){
           throw new UserAlreadyExistAuthenticationException("username exist");
         }
 
-        Member member = Member.of((MemberDetails) user);
+        Member member = Member.of((MemberDetails) user, passwordEncoder);
         //Todo : Role 생성 실패 exception 만들기. 메소드 분리도 해야할거 같음.
         MemberRole memberRole = MemberRole.of(RoleType.ADMIN, member);
         member.addMemberRole(memberRole);
 
         memberRepository.save(member);
+
+        log.info("SignUpUsername : {}", member.getUsername());
+        log.info("SignUpPassword : {}", member.getPassword());
     }
 
     @Override

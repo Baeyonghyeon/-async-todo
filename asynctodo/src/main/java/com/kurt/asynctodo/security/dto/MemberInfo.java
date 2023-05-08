@@ -11,6 +11,7 @@ public record MemberInfo(
 ) {
 
     public static MemberInfo of(Long memberId, String username, Collection<? extends GrantedAuthority> authorities) {
+
         return new MemberInfo(
                 memberId,
                 username,

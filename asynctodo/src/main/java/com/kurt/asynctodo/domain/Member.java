@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +26,19 @@ public class Member extends AuditingFields {
     @Column(nullable = false, length = 50)
     private String username;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 60)
     private String password;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
-    private List<MemberRole> memberRoles = new ArrayList<>();
+    private List<MemberRole> memberRoles;
 
-    public static Member of(MemberDetails memberDetails){
+    public static Member of(MemberDetails memberDetails, PasswordEncoder passwordEncoder){
         return new Member(
                 memberDetails.memberId(),
                 memberDetails.username(),
-                memberDetails.password(),
-                null
+                passwordEncoder.encode(memberDetails.password()),
+                new ArrayList<>()
         );
     }
 

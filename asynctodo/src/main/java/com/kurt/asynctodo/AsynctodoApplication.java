@@ -9,5 +9,4 @@ public class AsynctodoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AsynctodoApplication.class, args);
 	}
-
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/memo")
-public class MemoRestController {
+public class MemoController {
 
     private final MemoService memoService;
 
