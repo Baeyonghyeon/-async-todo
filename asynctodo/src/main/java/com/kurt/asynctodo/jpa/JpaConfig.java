@@ -23,6 +23,7 @@ public class JpaConfig {
 //                .map(Authentication::getPrincipal)
 //                .map(MemberInfo.class::cast)
 //                .map(MemberInfo::username);
+        // Todo : 로그인 사용자는 로그인한 아이디가 표시되게, 로그인을 하지 않으면 임이의 값을 정해 넣는다.
         return () -> Optional.of("kurt");
     }
 
