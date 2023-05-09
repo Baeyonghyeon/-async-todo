@@ -17,20 +17,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomUsernamePasswordProvider implements AuthenticationProvider {
 
-    private UserDetailsService userDetailsService;
-
-    private PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        log.debug("CustomUsernamePasswordProvider");
+        log.info("CustomUsernamePasswordProvider");
 
         UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
 
         String username = token.getName();
         String password = token.getCredentials().toString();
+        log.info("login username : {}", username);
+        log.info("login password : {}", password);
 
         MemberDetails m = (MemberDetails) userDetailsService.loadUserByUsername(username);
+        log.info("MemberDetails : {}", m);
 
         if (passwordEncoder.matches(password, m.getPassword())) {
             return new UsernamePasswordAuthenticationToken(username, password, m.getAuthorities());
