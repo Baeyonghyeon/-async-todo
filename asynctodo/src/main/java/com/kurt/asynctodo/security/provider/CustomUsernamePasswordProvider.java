@@ -33,9 +33,11 @@ public class CustomUsernamePasswordProvider implements AuthenticationProvider {
 
         MemberDetails m = (MemberDetails) userDetailsService.loadUserByUsername(username);
         log.info("MemberDetails : {}", m);
+        log.info("MemberDetails.toStirng : {}", m.toString());
+
 
         if (passwordEncoder.matches(password, m.getPassword())) {
-            return new UsernamePasswordAuthenticationToken(username, password, m.getAuthorities());
+            return new UsernamePasswordAuthenticationToken(m, password, m.getAuthorities());
         }
         throw new BadCredentialsException("Something went wrong!");
     }
