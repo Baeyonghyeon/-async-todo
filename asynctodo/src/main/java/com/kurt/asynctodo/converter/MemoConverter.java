@@ -4,12 +4,10 @@ import com.kurt.asynctodo.domain.Member;
 import com.kurt.asynctodo.domain.Memo;
 import com.kurt.asynctodo.dto.request.MemoRequestDto;
 import com.kurt.asynctodo.dto.response.MemoResponseDto;
-import org.springframework.stereotype.Component;
 
-@Component
 public interface MemoConverter {
 
-    default Memo MemoRequestDtoToMemoEntity(MemoRequestDto memoRequestDto, Long memberId){
+    default Memo MemoRequestDtoToMemoEntity(MemoRequestDto memoRequestDto, Long memberId) {
         return Memo.of(
                 null,
                 Member.of(memberId),
@@ -18,7 +16,7 @@ public interface MemoConverter {
         );
     }
 
-    default MemoResponseDto MemoEntityToMomoResponseDto(Memo memo){
+    default MemoResponseDto MemoEntityToMomoResponseDto(Memo memo) {
         return MemoResponseDto.of(
                 memo.getId(),
                 memo.getMember(),
