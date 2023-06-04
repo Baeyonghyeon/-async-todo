@@ -71,4 +71,6 @@ public class MemberDetailsService implements UserDetailsManager {
                 .map(MemberDetails::from)
                 .orElseThrow(() -> new UsernameNotFoundException("UsernameNotFound"));
     }
+
+    // Todo : Member 객체를 반환하는 메소드 생성.
 }
