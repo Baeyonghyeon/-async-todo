@@ -48,8 +48,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         MemberDetails memberDetails = (MemberDetails) authResult.getPrincipal();
 
         String accessToken = delegateAccessToken(memberDetails);
-
+        String refreshToken = delegateRefreshToken(memberDetails);
         response.setHeader("Authorization", "Bearer " + accessToken);
+        response.setHeader("Refresh", refreshToken);
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
@@ -64,7 +65,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Date expiration = jwtUtils.getTokenExpiration(jwtUtils.getAccessTokenExpirationMinutes()); // 토큰 발행 일자
         String base64EncodedSecretKey = jwtUtils.encodeBase64SecretKey(jwtUtils.getSecretKey()); // Secret Key 문자열 인코딩
 
-        // Access Token 생성
         return jwtUtils.generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
+    }
+
+    private String delegateRefreshToken(MemberDetails memberDetails) {
+        String subject = memberDetails.getUsername();
+        Date expiration = jwtUtils.getTokenExpiration(jwtUtils.getRefreshTokenExpirationMinutes());
+        String base64EncodedSecretKey = jwtUtils.encodeBase64SecretKey(jwtUtils.getSecretKey());
+
+        return jwtUtils.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
     }
 }
