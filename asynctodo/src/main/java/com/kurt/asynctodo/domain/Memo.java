@@ -2,10 +2,12 @@ package com.kurt.asynctodo.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
 @Entity
 @SequenceGenerator(
@@ -22,10 +24,29 @@ public class Memo extends AuditingFields {
     )
     private Long id;
 
+    @ManyToOne
+    private Member member;
+
     @Column(nullable = false, length = 50)
     private String title;
 
     @Column(nullable = false, length = 2000)
     private String content;
 
+    public static Memo of(Long id, Member member, String title, String content) {
+        return new Memo(id, member, title, content);
+    }
+
+    public void writer(Member member) {
+        this.member = member;
+    }
+
+    public void updateTitle(String s) {
+        this.title = s;
+    }
+
+    public void updateContent(String s) {
+        this.content = s;
+
+    }
 }

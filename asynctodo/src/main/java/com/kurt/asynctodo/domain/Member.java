@@ -33,12 +33,26 @@ public class Member extends AuditingFields {
     @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
     private List<MemberRole> memberRoles;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
+    private List<Memo> memo;
+
     public static Member of(MemberDetails memberDetails, PasswordEncoder passwordEncoder){
         return new Member(
                 memberDetails.memberId(),
                 memberDetails.username(),
                 passwordEncoder.encode(memberDetails.password()),
-                new ArrayList<>()
+                new ArrayList<>(),
+                null
+        );
+    }
+
+    public static Member of(Long id) {
+        return new Member(
+                id,
+                null,
+                null,
+                null,
+                null
         );
     }
 
