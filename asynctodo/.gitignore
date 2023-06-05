@@ -21,7 +21,7 @@ application-server.yml
 data.sql
 
 #http-request
-article-http-request.http
+MemberHttpRequest.http
 
 # AWS User-specific
 .idea/**/aws.xml
