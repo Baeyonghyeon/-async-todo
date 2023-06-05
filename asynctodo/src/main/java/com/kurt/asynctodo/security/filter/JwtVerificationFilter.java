@@ -1,7 +1,9 @@
 package com.kurt.asynctodo.security.filter;
 
-import com.kurt.asynctodo.security.utils.JwtUtils;
+import com.kurt.asynctodo.domain.MemberRole;
+import com.kurt.asynctodo.domain.RoleType;
 import com.kurt.asynctodo.security.dto.MemberInfo;
+import com.kurt.asynctodo.security.utils.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,9 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * JWTtoken 이 존재하는지 검사
- */
 @Slf4j
 @RequiredArgsConstructor
 public class JwtVerificationFilter extends OncePerRequestFilter {
@@ -34,7 +33,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        log.info("JWT 토큰 검증 및 SecurityContent에 저장을 시도합니다.");
+        log.info("JWT 토큰 검증 및 SecurityContext에 저장을 시도합니다.");
         try {
             Map<String, Object> claims = verifyJws(request);
             setAuthenticationToContext(claims);
@@ -77,8 +76,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         String username = (String) claims.get("username");
         // Users id를 얻음
         Long userId = Long.valueOf((Integer) claims.get("userId"));
-        // profile id 를 얻음
-        Long profileId = Long.valueOf((Integer) claims.get("profileId"));
+
         // 권한 정보를 얻음
         Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) ((List) claims.get("roles")).stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
