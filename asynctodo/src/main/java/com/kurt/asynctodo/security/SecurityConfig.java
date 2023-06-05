@@ -42,7 +42,9 @@ public class SecurityConfig {
                         e.authenticationEntryPoint(new MemberAuthenticationEntryPoint());
                         e.accessDeniedHandler(new MemberAccessDeniedHandler());
                     })
-                    .apply(new CustomFilterConfigDSL(jwtUtils)); // 직접 구현한 JwtAuthenticationFilter 등록
+                    .apply(new CustomFilterConfigDSL(jwtUtils)) //직접 구현한 JwtAuthenticationFilter 등록
+                    .and()
+                    .authorizeHttpRequests(a -> a.anyRequest().permitAll());
 
             return http.build();
     }
