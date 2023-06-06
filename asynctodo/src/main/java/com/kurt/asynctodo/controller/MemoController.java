@@ -19,13 +19,15 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/memos")
-//Todo : memberInfo 어나니머스 들어올 위험 있음 AOP 처리!!
+//Todo : memberInfo 어나니머스 들어옴 AOP 처리!!
 public class MemoController {
 
     private final MemoService memoService;
 
     @GetMapping("/{memo-id}")
-    public ResponseEntity<MemoResponseDto> getMemo(@PathVariable("memo-id") Long memoId) throws ExecutionException, InterruptedException {
+    public ResponseEntity<MemoResponseDto> getMemo(@AuthenticationPrincipal MemberInfo memberInfo,
+                                                   @PathVariable("memo-id") Long memoId) throws ExecutionException, InterruptedException {
+        log.info(String.valueOf(memberInfo));
         MemoResponseDto memoResponseDto = memoService.getById(memoId).get();
 
         return ResponseEntity.ok(memoResponseDto);
