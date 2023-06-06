@@ -11,7 +11,7 @@ public interface CrudService<T,S> {
 
     CompletableFuture<List<S>> getAll();
 
-    void updateById(final MemberInfo memberInfo, final T requestDto);
+    void updateById(final MemberInfo memberInfo, final T requestDto, final Long id);
 
     CompletableFuture<S> save(final MemberInfo memberInfo, final T requestDto);
 

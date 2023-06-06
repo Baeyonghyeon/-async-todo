@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Slf4j
@@ -52,12 +53,14 @@ public class MemoService implements CrudService<MemoRequestDto, MemoResponseDto>
 
     @Override
     @Async
-    public void updateById(final MemberInfo memberInfo, final MemoRequestDto requestDto) {
-//        Optional.ofNullable(requestDto.title())
-//                .ifPresent(requestDto::updateTitle);
-//        Optional.ofNullable(requestDto.content())
-//                .ifPresent(requestDto::updateContent);
+    public void updateById(final MemberInfo memberInfo, final MemoRequestDto requestDto, final Long memoId) {
 
+        Memo memo = writtenByMeFindMemo(memberInfo, memoId);
+
+        Optional.ofNullable(requestDto.title())
+                .ifPresent(memo::updateTitle);
+        Optional.ofNullable(requestDto.content())
+                .ifPresent(memo::updateContent);
     }
 
     @Override

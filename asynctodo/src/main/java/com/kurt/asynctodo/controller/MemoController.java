@@ -25,8 +25,7 @@ public class MemoController {
     private final MemoService memoService;
 
     @GetMapping("/{memo-id}")
-    public ResponseEntity<MemoResponseDto> getMemo(@AuthenticationPrincipal MemberInfo memberInfo,
-                                                   @PathVariable("memo-id") Long memoId) throws ExecutionException, InterruptedException {
+    public ResponseEntity<MemoResponseDto> getMemo(@PathVariable("memo-id") Long memoId) throws ExecutionException, InterruptedException {
         MemoResponseDto memoResponseDto = memoService.getById(memoId).get();
 
         return ResponseEntity.ok(memoResponseDto);
@@ -40,10 +39,11 @@ public class MemoController {
     }
 
 
-    @PatchMapping
+    @PatchMapping("/{memo-id}")
     public ResponseEntity<Void> updateMemo(@Valid @RequestBody MemoRequestDto memoRequestDto,
-                           @AuthenticationPrincipal MemberInfo memberInfo) {
-        memoService.updateById(memberInfo, memoRequestDto);
+                                           @AuthenticationPrincipal MemberInfo memberInfo,
+                                           @PathVariable("memo-id") Long memoId) {
+        memoService.updateById(memberInfo, memoRequestDto, memoId);
 
         return ResponseEntity.noContent().build();
     }
@@ -56,7 +56,7 @@ public class MemoController {
 
     @PostMapping
     public ResponseEntity<MemoResponseDto> postMemo(@Valid @RequestBody MemoRequestDto memoRequestDto,
-                         @AuthenticationPrincipal MemberInfo memberInfo) throws ExecutionException, InterruptedException {
+                                                    @AuthenticationPrincipal MemberInfo memberInfo) throws ExecutionException, InterruptedException {
         MemoResponseDto memoResponseDto = memoService.save(memberInfo, memoRequestDto).get();
 
         return ResponseEntity.created(URI.create("/api/v1/memos/" + memoResponseDto.id()))
