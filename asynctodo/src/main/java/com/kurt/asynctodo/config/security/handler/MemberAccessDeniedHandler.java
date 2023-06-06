@@ -1,6 +1,6 @@
-package com.kurt.asynctodo.security.handler;
+package com.kurt.asynctodo.config.security.handler;
 
-import com.kurt.asynctodo.security.utils.ErrorResponder;
+import com.kurt.asynctodo.config.security.utils.ErrorResponder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

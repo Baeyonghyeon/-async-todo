@@ -1,4 +1,4 @@
-package com.kurt.asynctodo.security.dto.response;
+package com.kurt.asynctodo.config.security.dto.response;
 
 public record MemberSignInResponseDto(
         String username,

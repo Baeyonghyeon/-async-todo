@@ -1,4 +1,4 @@
-package com.kurt.asynctodo.security.utils;
+package com.kurt.asynctodo.config.security.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;

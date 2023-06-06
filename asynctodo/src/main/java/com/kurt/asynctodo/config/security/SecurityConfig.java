@@ -1,8 +1,8 @@
-package com.kurt.asynctodo.security;
+package com.kurt.asynctodo.config.security;
 
-import com.kurt.asynctodo.security.handler.MemberAccessDeniedHandler;
-import com.kurt.asynctodo.security.handler.MemberAuthenticationEntryPoint;
-import com.kurt.asynctodo.security.utils.JwtUtils;
+import com.kurt.asynctodo.config.security.handler.MemberAccessDeniedHandler;
+import com.kurt.asynctodo.config.security.utils.JwtUtils;
+import com.kurt.asynctodo.config.security.handler.MemberAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,8 @@
-package com.kurt.asynctodo.security.handler;
+package com.kurt.asynctodo.config.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kurt.asynctodo.security.dto.MemberDetails;
-import com.kurt.asynctodo.security.dto.MemberInfo;
+import com.kurt.asynctodo.config.security.dto.MemberDetails;
+import com.kurt.asynctodo.config.security.dto.MemberInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

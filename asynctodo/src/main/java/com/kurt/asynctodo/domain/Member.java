@@ -1,7 +1,7 @@
 package com.kurt.asynctodo.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.kurt.asynctodo.security.dto.MemberDetails;
+import com.kurt.asynctodo.config.security.dto.MemberDetails;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

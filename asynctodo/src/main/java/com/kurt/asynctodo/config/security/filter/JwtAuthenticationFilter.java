@@ -1,9 +1,9 @@
-package com.kurt.asynctodo.security.filter;
+package com.kurt.asynctodo.config.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kurt.asynctodo.security.utils.JwtUtils;
-import com.kurt.asynctodo.security.dto.MemberDetails;
-import com.kurt.asynctodo.security.dto.SignInDto;
+import com.kurt.asynctodo.config.security.dto.MemberDetails;
+import com.kurt.asynctodo.config.security.utils.JwtUtils;
+import com.kurt.asynctodo.config.security.dto.SignInDto;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

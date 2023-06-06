@@ -2,7 +2,7 @@ package com.kurt.asynctodo.controller;
 
 import com.kurt.asynctodo.dto.request.MemoRequestDto;
 import com.kurt.asynctodo.dto.response.MemoResponseDto;
-import com.kurt.asynctodo.security.dto.MemberInfo;
+import com.kurt.asynctodo.config.security.dto.MemberInfo;
 import com.kurt.asynctodo.service.impl.MemoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

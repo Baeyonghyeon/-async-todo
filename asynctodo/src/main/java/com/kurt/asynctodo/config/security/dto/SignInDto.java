@@ -1,4 +1,4 @@
-package com.kurt.asynctodo.security.dto;
+package com.kurt.asynctodo.config.security.dto;
 
 public record SignInDto(
         String username,

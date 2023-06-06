@@ -1,4 +1,4 @@
-package com.kurt.asynctodo.async;
+package com.kurt.asynctodo.config.async;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

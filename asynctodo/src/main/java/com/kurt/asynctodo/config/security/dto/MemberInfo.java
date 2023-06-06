@@ -1,4 +1,4 @@
-package com.kurt.asynctodo.security.dto;
+package com.kurt.asynctodo.config.security.dto;
 
 import org.springframework.security.core.GrantedAuthority;
 

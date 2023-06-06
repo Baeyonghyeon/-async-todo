@@ -1,6 +1,6 @@
 package com.kurt.asynctodo.service;
 
-import com.kurt.asynctodo.security.dto.MemberInfo;
+import com.kurt.asynctodo.config.security.dto.MemberInfo;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

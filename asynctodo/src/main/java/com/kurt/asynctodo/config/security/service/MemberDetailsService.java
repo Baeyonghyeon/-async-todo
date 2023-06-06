@@ -1,11 +1,11 @@
-package com.kurt.asynctodo.security.service;
+package com.kurt.asynctodo.config.security.service;
 
+import com.kurt.asynctodo.config.security.dto.MemberDetails;
 import com.kurt.asynctodo.domain.Member;
 import com.kurt.asynctodo.domain.MemberRole;
 import com.kurt.asynctodo.domain.RoleType;
 import com.kurt.asynctodo.exception.UserAlreadyExistAuthenticationException;
 import com.kurt.asynctodo.repository.MemberRepository;
-import com.kurt.asynctodo.security.dto.MemberDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,10 +1,10 @@
-package com.kurt.asynctodo.security;
+package com.kurt.asynctodo.config.security;
 
-import com.kurt.asynctodo.security.filter.JwtAuthenticationFilter;
-import com.kurt.asynctodo.security.filter.JwtVerificationFilter;
-import com.kurt.asynctodo.security.utils.JwtUtils;
-import com.kurt.asynctodo.security.handler.MemberAuthenticationFailureHandler;
-import com.kurt.asynctodo.security.handler.MemberAuthenticationSuccessHandler;
+import com.kurt.asynctodo.config.security.filter.JwtAuthenticationFilter;
+import com.kurt.asynctodo.config.security.filter.JwtVerificationFilter;
+import com.kurt.asynctodo.config.security.handler.MemberAuthenticationFailureHandler;
+import com.kurt.asynctodo.config.security.utils.JwtUtils;
+import com.kurt.asynctodo.config.security.handler.MemberAuthenticationSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

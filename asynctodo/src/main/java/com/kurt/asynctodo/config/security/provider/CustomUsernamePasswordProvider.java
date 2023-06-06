@@ -1,6 +1,6 @@
-package com.kurt.asynctodo.security.provider;
+package com.kurt.asynctodo.config.security.provider;
 
-import com.kurt.asynctodo.security.dto.MemberDetails;
+import com.kurt.asynctodo.config.security.dto.MemberDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;

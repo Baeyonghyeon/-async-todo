@@ -6,7 +6,7 @@ import com.kurt.asynctodo.domain.Memo;
 import com.kurt.asynctodo.dto.request.MemoRequestDto;
 import com.kurt.asynctodo.dto.response.MemoResponseDto;
 import com.kurt.asynctodo.repository.MemoRepository;
-import com.kurt.asynctodo.security.dto.MemberInfo;
+import com.kurt.asynctodo.config.security.dto.MemberInfo;
 import com.kurt.asynctodo.service.CrudService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
